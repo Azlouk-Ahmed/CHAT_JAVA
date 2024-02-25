@@ -1,0 +1,69 @@
+
+
+-- Create User table
+CREATE TABLE User_table (
+  user_id INT PRIMARY KEY,
+  username VARCHAR(50) NOT NULL,
+  password VARCHAR(50) NOT NULL,
+  email VARCHAR(50) NOT NULL,
+  date_created DATE
+);
+
+
+
+INSERT INTO User_table (user_id, username, password, email, date_created)
+VALUES
+  (1, 'John', 'password1', 'john@example.com', '2023-05-21'),
+  (2, 'Sarah', 'password2', 'sarah@example.com', '2023-05-21'),
+  (3, 'Michael', 'password3', 'michael@example.com', '2023-05-21'),
+  (4, 'Emily', 'password4', 'emily@example.com', '2023-05-21'),
+  (5, 'David', 'password5', 'david@example.com', '2023-05-21'),
+  (6, 'Sophia', 'password6', 'sophia@example.com', '2023-05-21');
+
+
+
+
+CREATE TABLE Conversation (
+  conversation_id INT PRIMARY KEY,
+  user_id1 INT,
+  user_id2 INT,
+  date_created DATE,
+  FOREIGN KEY (user_id1) REFERENCES User_table (user_id),
+  FOREIGN KEY (user_id2) REFERENCES User_table (user_id)
+);
+
+
+INSERT INTO Conversation (conversation_id, user_id1, user_id2, date_created)
+VALUES
+  (1, 1, 2, '2023-05-21'),
+  (2, 1, 3, '2023-05-21'),
+  (3, 2, 3, '2023-05-21'),
+  (4, 3, 4, '2023-05-21'),
+  (5, 4, 5, '2023-05-21'),
+  (6, 5, 6, '2023-05-21');
+
+
+CREATE TABLE message (
+  MESSAGE_ID INT,
+  CONVERSATION_ID INT,
+  SENDER_ID INT,
+  MESSAGE_CONTENT VARCHAR(100),
+  DATE_SENT DATE,
+  INSERT_TIMESTAMP TIMESTAMP,
+  FOREIGN KEY (CONVERSATION_ID) REFERENCES conversation(CONVERSATION_ID),
+  FOREIGN KEY (SENDER_ID) REFERENCES user_table(USER_ID)
+);
+
+INSERT INTO message (MESSAGE_ID, CONVERSATION_ID, SENDER_ID, MESSAGE_CONTENT, DATE_SENT, INSERT_TIMESTAMP)
+VALUES
+  (1, 1, 1, 'Hello, Sarah!', '2023-05-21', CURRENT_TIMESTAMP),
+  (2, 1, 2, 'Hi, John!', '2023-05-21', CURRENT_TIMESTAMP),
+  (3, 2, 1, 'How are you, Michael?', '2023-05-21', CURRENT_TIMESTAMP),
+  (4, 2, 3, 'I''m good, thanks!', '2023-05-21', CURRENT_TIMESTAMP),
+  (5, 3, 2, 'Hey, Sarah!', '2023-05-21', CURRENT_TIMESTAMP),
+  (6, 3, 3, 'Hi, Michael!', '2023-05-21', CURRENT_TIMESTAMP);
+
+
+
+
+
