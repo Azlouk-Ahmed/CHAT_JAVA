@@ -2,6 +2,8 @@
 
 This MVC project implements a simple chat application using Java, Oracle Database, and JDBC.
 
+<img src="https://www.gif-maniac.com/gifs/50/49799.gif" width="100px" />
+
 **Project Structure:**
 
 - `src/`: Contains Java source code for the application logic, including:
